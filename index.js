@@ -19,7 +19,7 @@ app.get('/change-background', (req, res) => {
   const script = `
     <script>
       window.onload = function() {
-        var element = window.parent.document.getElementById('id_3');
+        var element = window.parent.document.getElementById('header_1');
         if (element) {
           element.style.backgroundColor = 'black';
         }
