@@ -16,16 +16,19 @@ app.get('/', (req, res) => {
 
 // JotForm'daki elementin arka planını değiştiren route
 app.get('/change-background', (req, res) => {
-  const script = `
-    <script>
-      window.onload = function() {
-        var element = window.parent.document.getElementById('header_1');
-        if (element) {
-          element.style.backgroundColor = 'black';
+    window.onload = function() {
+        // window.parent ile iframe'in dışındaki belgeye erişiyoruz
+        var parentDocument = window.parent.document;
+
+        // id_3 ID'li elementi bulup arka plan rengini siyaha çeviriyoruz
+        var targetElement = parentDocument.getElementById('header_1');
+        if (targetElement) {
+            targetElement.style.backgroundColor = 'black';  // Arka plan rengini siyah yap
+            console.log("id_3 bulundu ve arka plan siyaha çevrildi.");
+        } else {
+            console.log("id_3 bulunamadı.");
         }
-      };
-    </script>
-  `;
+    };
   res.send(script);  // JotForm iframesine bu script'i gönder
 });
 
